@@ -19,7 +19,7 @@ import TopBanner from './TopBanner';
 const Products = () => {
 
      const dispath = useDispatch(dispath => dispath)
-     const state = useSelector(state => state.productsState.products)
+     const state = useSelector(state => state.productsState)
 
      useEffect(() => {
           dispath(fetchProducts())
@@ -31,8 +31,11 @@ const Products = () => {
                <Container className={style.container}>
                     <Row>
                          {
-                              state.length > 0 ?
-                                   state.map(item => <Product key={item.id} data={item} />)
+                              state.products.length > 0 ?
+                                   state.error ?
+                                        <h1>Error</h1>
+                                        :
+                                        state.products.map(item => <Product key={item.id} data={item} />)
                                    :
                                    <h1>Loading...</h1>
                          }

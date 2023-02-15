@@ -23,6 +23,7 @@ const App = () => {
                     <Routes>
                          <Route path='/products/:id' element={<Detail />} />
                          <Route path='/products' element={<Products />} />
+                         <Route path='/*' element={<Navigate to='/products' />} />
                     </Routes>
                </>
           </Provider>
