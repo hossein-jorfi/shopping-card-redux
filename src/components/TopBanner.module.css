@@ -1,0 +1,31 @@
+.container {
+     align-items: center;
+}
+
+.header {
+     color: #757575;
+     letter-spacing: 1px;
+}
+
+.pragraph {
+     color: #969696;
+}
+
+.secendContainer {
+     text-align: center;
+     background-color: #278fcc;
+     padding: 2rem 1rem;
+     margin-top: 2rem;
+}
+
+.secendHeader {
+     color: #fff;
+     font-weight: 300;
+     letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+     .container {
+          flex-direction: column-reverse;
+     }
+}
