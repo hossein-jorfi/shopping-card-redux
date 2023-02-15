@@ -1,0 +1,89 @@
+.container {
+     display: flex;
+     align-items: center;
+     box-shadow: 0 0 5px 1px #ddd;
+     padding: 2rem;
+     border-radius: 5px;
+}
+
+.imageContainer {
+     border: 1px solid hsla(0, 0%, 80%, .418);
+     border-radius: 5px;
+     padding: 1rem;
+}
+
+.image {
+     max-width: 200px;
+}
+
+.itemsContainer {
+     margin-left: 1rem;
+}
+
+.title {
+     color: #757575;
+}
+
+.pra {
+     color: #969696;
+}
+
+.category {
+     background-color: #e9e9e9;
+     color: #8d8d8d;
+     width: fit-content;
+     padding: .3rem;
+     border-radius: 5px;
+}
+
+.priceContainer {
+     display: flex;
+     align-items: center;
+     margin-bottom: 1rem;
+}
+
+.price {
+     color: #00db00;
+     margin-right: 1rem;
+}
+
+.rateContainer {
+     display: flex;
+     align-items: center;
+}
+
+.rate {
+     color: #afafaf;
+}
+
+.star {
+     width: 20px;
+     height: 20px;
+}
+
+.back {
+     background-color: #f5c800;
+     color: #fff;
+     border: none;
+     border-radius: 5px;
+     padding: .5rem;
+}
+
+.button {
+     margin-left: .5rem;
+     background-color: #2a95d3;
+     color: #fff;
+     border: none;
+     border-radius: 5px;
+     padding: .5rem;
+}
+
+@media (max-width: 768px) {
+     .container {
+          flex-direction: column;
+     }
+
+     .itemsContainer {
+          margin: 1rem 0;
+     }
+}

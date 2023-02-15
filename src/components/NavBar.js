@@ -6,13 +6,16 @@ import { Container } from 'react-bootstrap';
 // Style
 import style from './NavBar.module.css'
 
+// Router
+import { Link } from 'react-router-dom';
+
 const NavBar = () => {
      return (
           <div>
                <Container className={style.container}>
-                    <a className={style.Link} href="#s">
+                    <Link to='/products' className={style.Link}>
                          <h4 className={style.header}>Products</h4>
-                    </a>
+                    </Link>
 
                     <a href="#s">
                          <div className={style.iconContainer}>
