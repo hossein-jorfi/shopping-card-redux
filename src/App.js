@@ -2,8 +2,8 @@ import React from 'react';
 
 // Componets
 import NavBar from './components/NavBar';
-import TopBanner from './components/TopBanner';
 import Products from './components/Products';
+import Detail from './components/Detail';
 
 // Css
 import './App.css'
@@ -12,12 +12,19 @@ import './App.css'
 import store from './redux/store';
 import { Provider } from 'react-redux';
 
+// Router
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 const App = () => {
      return (
           <Provider store={store}>
+               <>
                <NavBar />
-               <TopBanner />
-               <Products /> 
+                    <Routes>
+                         <Route path='/products/:id' element={<Detail />} />
+                         <Route path='/products' element={<Products />} />
+                    </Routes>
+               </>
           </Provider>
      );
 };

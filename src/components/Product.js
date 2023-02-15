@@ -8,15 +8,17 @@ import star from '../icons/star.png'
 import share from '../icons/share.svg'
 import heart from '../icons/heart.svg'
 import plus from '../icons/plus.png'
-import minus from '../icons/minus.png'
 import trash from '../icons/trash.png'
 
 // Bootstrap
 import { Col } from 'react-bootstrap';
 
+// Router
+import { Link } from 'react-router-dom';
+
 const Product = props => {
 
-     const { title, price, image, rating } = props.data
+     const { title, price, image, rating, id } = props.data
 
      const [flag, setFlag] = useState(true)
 
@@ -45,19 +47,23 @@ const Product = props => {
                          </div>
                     </div>
                     <div className={style.imageContainer}>
-                         <img
-                              className={style.image}
-                              src={image}
-                              alt="" />
+                         <Link to={`/products/${id}`}>
+                              <img
+                                   className={style.image}
+                                   src={image}
+                                   alt="" />
+                         </Link>
                     </div>
-                    <h5 className={style.title}>{shorter(title)}</h5>
+                    <Link to={`/products/${id}`} style={{'textDecoration': 'none'}}>
+                         <h5 className={style.title}>{shorter(title)}</h5>
+                    </Link>
                     <p className={style.price}>${price}</p>
                     <div className={style.mainButtonsContainer}>
                          {
                               flag ?
-                                   <a onClick={
+                                   <p onClick={
                                         () => { setFlag(false) }
-                                   } className={style.button} href="#s">Add To Cart</a>
+                                   } className={style.button} href="#s">Add To Cart</p>
                                    :
                                    <div className={style.buttonsContainer}>
                                         <img className={style.icon} src={trash} alt="" />

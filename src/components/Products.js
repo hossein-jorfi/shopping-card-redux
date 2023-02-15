@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 // Bootstrap
 import { Container, Row } from 'react-bootstrap';
@@ -13,6 +13,9 @@ import style from './Products.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import fetchProducts from '../redux/products/productsAction';
 
+// Component
+import TopBanner from './TopBanner';
+
 const Products = () => {
 
      const dispath = useDispatch(dispath => dispath)
@@ -20,19 +23,22 @@ const Products = () => {
 
      useEffect(() => {
           dispath(fetchProducts())
-     }, [])
+     }, [dispath])
 
      return (
-          <Container className={style.container}>
-               <Row>
-                    {
-                         state.length > 0 ?
-                              state.map(item => <Product key={item.id} data={item} />)
-                              :
-                              <h1>Loading...</h1>
-                    }
-               </Row>
-          </Container>
+          <>
+               <TopBanner />
+               <Container className={style.container}>
+                    <Row>
+                         {
+                              state.length > 0 ?
+                                   state.map(item => <Product key={item.id} data={item} />)
+                                   :
+                                   <h1>Loading...</h1>
+                         }
+                    </Row>
+               </Container>
+          </>
      );
 };
 
