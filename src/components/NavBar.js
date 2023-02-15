@@ -17,14 +17,14 @@ const NavBar = () => {
                          <h4 className={style.header}>Products</h4>
                     </Link>
 
-                    <a href="#s">
+                    <Link to='/cart'>
                          <div className={style.iconContainer}>
                               <img src='https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png'
                                    className={style.image}
                                    alt="cart icon" />
                               <span className={style.number}>10</span>
                          </div>
-                    </a>
+                    </Link>
                </Container>
           </div>
      );

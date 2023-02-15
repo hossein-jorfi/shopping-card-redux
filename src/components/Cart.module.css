@@ -1,0 +1,34 @@
+.mainContainer {
+     background-color: #fff;
+     border: 1px solid hsla(0, 0%, 80%, .418);
+     border-radius: 5px;
+     padding: 1rem 1.5rem;
+}
+
+.buttonsContainer {
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+}
+
+.buttonPay {
+     width: 49%;
+     border: none;
+     background-color: #00ce00;
+     color: #fff;
+     border-radius: 5px;
+     padding: .4rem 0;
+}
+
+.buttonClear {
+     width: 49%;
+     border: none;
+     background-color: #2a95d3;
+     color: #fff;
+     border-radius: 5px;
+     padding: .4rem 0;
+}
+
+.text {
+     color: #757575;
+}

@@ -4,6 +4,7 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import Products from './components/Products';
 import Detail from './components/Detail';
+import Cart from './components/Cart';
 
 // Css
 import './App.css'
@@ -23,6 +24,7 @@ const App = () => {
                     <Routes>
                          <Route path='/products/:id' element={<Detail />} />
                          <Route path='/products' element={<Products />} />
+                         <Route path='/cart' element={<Cart />} />
                          <Route path='/*' element={<Navigate to='/products' />} />
                     </Routes>
                </>
