@@ -1,0 +1,36 @@
+.container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 1rem 0;
+}
+
+.iconContainer {
+     position: relative;
+}
+
+.image {
+     width: 45px;
+}
+.number {
+     font-size: 13px;
+     position: absolute;
+     top: -2px;
+     right: -1px;
+     background-color: #278fcc;
+     color: #fff;
+     padding: 3px;
+     text-align: center;
+     border-radius: 30px;
+     min-height: 20px;
+     min-width: 20px;
+}
+
+.header {
+     color: #757575;
+     font-weight: 600;
+}
+
+.Link {
+     text-decoration: none;
+}
