@@ -8,13 +8,17 @@ import Products from './components/Products';
 // Css
 import './App.css'
 
+// Redux
+import store from './redux/store';
+import { Provider } from 'react-redux';
+
 const App = () => {
      return (
-          <div>
+          <Provider store={store}>
                <NavBar />
                <TopBanner />
                <Products /> 
-          </div>
+          </Provider>
      );
 };
 

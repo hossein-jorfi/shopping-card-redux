@@ -20,13 +20,13 @@ const fetchProductsFailure = error => {
      }
 }
 
-const fetchProduct = () => {
+const fetchProducts = () => {
      return (dispath) => {
           dispath(fetchProductsRequest())
           axios.get('https://fakestoreapi.com/products')
                .then(response => dispath(fetchProductsSuccess(response.data)))
-               .catch(error => dispath(fetchProductsFailure(error)))
+               .catch(error => dispath(fetchProductsFailure(error.message)))
      }
 }
 
-export default fetchProduct;
+export default fetchProducts;

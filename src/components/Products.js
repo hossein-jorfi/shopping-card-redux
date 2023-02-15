@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 // Bootstrap
@@ -10,21 +9,25 @@ import Product from './Product';
 // Style
 import style from './Products.module.css'
 
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import fetchProducts from '../redux/products/productsAction';
+
 const Products = () => {
 
-     const [products, setProducts] = useState([])
+     const dispath = useDispatch(dispath => dispath)
+     const state = useSelector(state => state.productsState.products)
 
      useEffect(() => {
-          axios('https://fakestoreapi.com/products')
-               .then(response => setProducts(response.data))
+          dispath(fetchProducts())
      }, [])
 
      return (
           <Container className={style.container}>
                <Row>
                     {
-                         products.length > 0 ?
-                              products.map(item => <Product key={item.id} data={item} />)
+                         state.length > 0 ?
+                              state.map(item => <Product key={item.id} data={item} />)
                               :
                               <h1>Loading...</h1>
                     }
