@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 import style from './Detail.module.css'
 
 // Router
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // Redux
 import { useSelector } from 'react-redux';
