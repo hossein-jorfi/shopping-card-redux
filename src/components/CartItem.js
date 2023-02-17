@@ -7,15 +7,35 @@ import style from './CartItem.module.css'
 import { Link } from 'react-router-dom';
 
 // Icons 
-import plus from '../icons/minus.png'
+import plus from '../icons/plus.png'
 import trash from '../icons/trash.png'
+import minus from '../icons/minus.png'
 
-const CartItem = () => {
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { removeItem, increase, decrease } from '../redux/cart/cartAction'
+
+const CartItem = props => {
+
+     const { data } = props;
+
+     const dispath = useDispatch()
+     const cart = useSelector(state => state.cartState)
+     const selectedItems = cart.selectedItems
+     const productInCart = selectedItems.find(item => item.id === data.id)
+
+
+     const shorter = text => {
+          const splitedText = text.split(' ')
+          const result = `${splitedText[0]} ${splitedText[1]}`
+     }
+
+
      return (
           <div className={style.container}>
                <div className={style.imageContainer}>
-                    <Link>
-                         <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+                    <Link to={`/products/${data.id}`}>
+                         <img src={data.image}
                               alt='product'
                               className={style.image}
                          />
@@ -23,14 +43,25 @@ const CartItem = () => {
                </div>
 
                <div className={style.infoContainer}>
-                    <h4>Title title</h4>
-                    <span>$100</span>
+                    <h4>{shorter(data.title)}</h4>
+                    <span>${data.price}</span>
                </div>
 
                <div className={style.buttonsContainer}>
-                    <img className={style.icon} src={trash} alt="icon" />
-                    <span>5</span>
-                    <img className={style.icon} src={plus} alt="icon" />
+                    {
+                         productInCart.quantity === 1 ?
+                              <img
+                                   onClick={() => dispath(removeItem(data))}
+                                   className={style.icon} src={trash} alt="icon" />
+                              :
+                              <img
+                                   onClick={() => dispath(decrease(data))}
+                                   className={style.icon} src={minus} alt="icon" />
+                    }
+                    <span>{productInCart.quantity}</span>
+                    <img
+                         onClick={() => dispath(increase(data))}
+                         className={style.icon} src={plus} alt="icon" />
                </div>
 
           </div>

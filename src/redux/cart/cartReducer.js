@@ -52,12 +52,19 @@ const cartReducer = (state = initialState, action) => {
 
           case 'CHECKOUT':
                return {
-                    ...initialState,
+                    selectedItems: [],
+                    itemsCounter: 0,
+                    total: 0,
                     checkOut: true
                }
 
           case 'CLEAR':
-               return initialState
+               return {
+                    selectedItems: [],
+                    itemsCounter: 0,
+                    total: 0,
+                    checkOut: false
+               }
 
           default: return state
      }
