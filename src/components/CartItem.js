@@ -28,6 +28,7 @@ const CartItem = props => {
      const shorter = text => {
           const splitedText = text.split(' ')
           const result = `${splitedText[0]} ${splitedText[1]}`
+          return result
      }
 
 
@@ -43,8 +44,8 @@ const CartItem = props => {
                </div>
 
                <div className={style.infoContainer}>
-                    <h4>{shorter(data.title)}</h4>
-                    <span>${data.price}</span>
+                    <h4 className={style.title}>{shorter(data.title)}</h4>
+                    <span className={style.price}>${data.price}</span>
                </div>
 
                <div className={style.buttonsContainer}>

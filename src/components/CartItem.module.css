@@ -42,6 +42,16 @@
      align-items: center;
 }
 
+.title {
+     color: #949494;
+     font-weight: 600;
+}
+
+.price {
+     color: #00db00;
+     font-weight: 600;
+}
+
 @media (max-width: 575px) {
      .container {
           flex-direction: column;
