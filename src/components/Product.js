@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Style
 import style from './Product.module.css'
@@ -9,6 +9,7 @@ import share from '../icons/share.svg'
 import heart from '../icons/heart.svg'
 import plus from '../icons/plus.png'
 import trash from '../icons/trash.png'
+import minus from '../icons/minus.png'
 
 // Bootstrap
 import { Col } from 'react-bootstrap';
@@ -16,20 +17,23 @@ import { Col } from 'react-bootstrap';
 // Router
 import { Link } from 'react-router-dom';
 
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem, removeItem, increase, decrease } from '../redux/cart/cartAction'
+
 const Product = props => {
 
-     const { title, price, image, rating, id } = props.data
+     const cart = useSelector(state => state.cartState)
+     const dispath = useDispatch()
 
-     const [flag, setFlag] = useState(true)
+
+     const product = props.data
+     const { title, price, image, rating, id } = product
 
      const shorter = text => {
           const splitedText = text.split(' ')
           const result = `${splitedText[0]} ${splitedText[1]}`
           return result
-     }
-
-     const clickHandler = () => {
-          setFlag(false)
      }
 
      return (
@@ -54,21 +58,35 @@ const Product = props => {
                                    alt="" />
                          </Link>
                     </div>
-                    <Link to={`/products/${id}`} style={{'textDecoration': 'none'}}>
+                    <Link to={`/products/${id}`} style={{ 'textDecoration': 'none' }}>
                          <h5 className={style.title}>{shorter(title)}</h5>
                     </Link>
                     <p className={style.price}>${price}</p>
                     <div className={style.mainButtonsContainer}>
                          {
-                              flag ?
-                                   <p onClick={
-                                        () => { setFlag(false) }
-                                   } className={style.button} href="#s">Add To Cart</p>
+                              !cart.selectedItems.find(item => item.id === id) ?
+                                   <p onClick={() => { dispath(addItem(product)) }} className={style.button} href="#s">Add To Cart</p>
                                    :
                                    <div className={style.buttonsContainer}>
-                                        <img className={style.icon} src={trash} alt="" />
-                                        <span className={style.quantity}>0</span>
-                                        <img className={style.icon} src={plus} alt="" />
+                                        {
+                                             cart.selectedItems.find(item => item.id === id).quantity === 1 &&
+                                             <img
+                                                  onClick={() => dispath(removeItem(product))}
+                                                  className={style.icon} src={trash} alt="trash" />
+                                        }
+                                        {
+                                             cart.selectedItems.find(item => item.id === id).quantity !== 1 &&
+                                             <img
+                                                  onClick={() => dispath(decrease(product))}
+                                                  className={style.icon} src={minus} alt="minus" />
+                                        }
+                                        <span className={style.quantity}>
+                                             {cart.selectedItems.find(item => item.id === id).quantity}
+                                        </span>
+                                        <img onClick={() => {
+                                             dispath(increase(product))
+                                             console.log(cart.selectedItems.find(item => item.id === id).quantity)
+                                        }} className={style.icon} src={plus} alt="plus" />
                                    </div>
                          }
                     </div>
@@ -78,3 +96,13 @@ const Product = props => {
 };
 
 export default Product;
+
+/*
+<p onClick={() => { dispath(addItem()) }} className={style.button} href="#s">Add To Cart</p>
+
+<div className={style.buttonsContainer}>
+     <img className={style.icon} src={trash} alt="" />
+     <span className={style.quantity}>0</span>
+     <img className={style.icon} src={plus} alt="" />
+</div>
+*/
