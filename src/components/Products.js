@@ -5,6 +5,7 @@ import { Container, Row } from 'react-bootstrap';
 
 // Components
 import Product from './Product';
+import Loading from './Loading';
 
 // Style
 import style from './Products.module.css'
@@ -37,7 +38,7 @@ const Products = () => {
                                         :
                                         state.products.map(item => <Product key={item.id} data={item} />)
                                    :
-                                   <h1>Loading...</h1>
+                                   <Loading />
                          }
                     </Row>
                </Container>
