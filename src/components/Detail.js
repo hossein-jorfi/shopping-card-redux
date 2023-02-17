@@ -10,10 +10,14 @@ import style from './Detail.module.css'
 import { useParams, useNavigate } from 'react-router-dom';
 
 // Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem, removeItem, increase, decrease } from '../redux/cart/cartAction'
 
 // Icons
 import star from '../icons/star.png'
+import plus from '../icons/plus.png'
+import trash from '../icons/trash.png'
+import minus from '../icons/minus.png'
 
 const Detail = () => {
 
@@ -22,10 +26,14 @@ const Detail = () => {
      const id = useParams().id
 
      const products = useSelector(state => state.productsState.products)
+     const cart = useSelector(state => state.cartState)
+     const dispath = useDispatch()
 
      const product = products.find(item => item.id === +id)
 
      const { image, title, description, rating, category, price } = product
+
+     const isInCart = cart.selectedItems.find(item => item.id === +id) ? true : false;
 
      return (
           <Container className={style.mainContainer}>
@@ -47,7 +55,33 @@ const Detail = () => {
                          </div>
                          <div className={style.buttonsContainer}>
                               <button className={style.back} onClick={() => { navigate(-1) }}>Back</button>
-                              <button className={style.button}>Add To Cart</button>
+
+                              {
+                                   !isInCart ?
+                                        <p onClick={() => { dispath(addItem(product)) }} className={style.button} href="#s">Add To Cart</p>
+                                        :
+                                        <div className={style.buttonsContainer2}>
+                                             {
+                                                  cart.selectedItems.find(item => item.id === +id).quantity === 1 &&
+                                                  <img
+                                                       onClick={() => dispath(removeItem(product))}
+                                                       className={style.icon} src={trash} alt="trash" />
+                                             }
+                                             {
+                                                  cart.selectedItems.find(item => item.id === +id).quantity !== 1 &&
+                                                  <img
+                                                       onClick={() => dispath(decrease(product))}
+                                                       className={style.icon} src={minus} alt="minus" />
+                                             }
+                                             <span className={style.quantity}>
+                                                  {cart.selectedItems.find(item => item.id === +id).quantity}
+                                             </span>
+                                             <img onClick={() => {
+                                                  dispath(increase(product))
+                                                  console.log(cart.selectedItems.find(item => item.id === +id).quantity)
+                                             }} className={style.icon} src={plus} alt="plus" />
+                                        </div>
+                              }
                          </div>
                     </div>
                </div>
@@ -56,3 +90,25 @@ const Detail = () => {
 };
 
 export default Detail;
+
+/*
+{
+                                                  cart.selectedItems.find(item => item.id === id).quantity === 1 &&
+                                                  <img
+                                                       onClick={() => dispath(removeItem(product))}
+                                                       className={style.icon} src={trash} alt="trash" />
+                                             }
+                                             {
+                                                  cart.selectedItems.find(item => item.id === id).quantity !== 1 &&
+                                                  <img
+                                                       onClick={() => dispath(decrease(product))}
+                                                       className={style.icon} src={minus} alt="minus" />
+                                             }
+                                             <span className={style.quantity}>
+                                                  {cart.selectedItems.find(item => item.id === id).quantity}
+                                             </span>
+                                             <img onClick={() => {
+                                                  dispath(increase(product))
+                                                  console.log(cart.selectedItems.find(item => item.id === id).quantity)
+                                             }} className={style.icon} src={plus} alt="plus" />
+*/
