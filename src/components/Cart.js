@@ -23,7 +23,7 @@ const Cart = () => {
      const cart = useSelector(state => state.cartState)
 
      return (
-          <Container>
+          <Container className={style.container}>
                {
                     cart.selectedItems.length === 0 ?
                          cart.checkOut ?

@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Products from './components/Products';
 import Detail from './components/Detail';
 import Cart from './components/Cart';
+import Footer from './components/Footer';
 
 // Css
 import './App.css'
@@ -27,6 +28,7 @@ const App = () => {
                          <Route path='/cart' element={<Cart />} />
                          <Route path='/*' element={<Navigate to='/products' />} />
                     </Routes>
+               <Footer />
                </>
           </Provider>
      );
